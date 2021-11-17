@@ -1,17 +1,18 @@
-<!-- ここがログイン後の最初のアクセス。マイページとなる。　-->
-<h1>index</h1>
+<!-- ここがログイン後の最初のアクセス。マイページとなる。 /users/:id　-->
+<h1>index　ログイン後ページ</h1>
 <!-- サイドバー部分　-->
 <div class="container">
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
+      <%= image_tag('no_image.jpg') %>
       <table class="table">
        <tbody>
 
         <tr></tr>
         <tr>
           <th>name</th>
-          <th></th>
+          <th><%= @user.name %></th>
         </tr>
         <tr>
           <th>introduction</th>
@@ -20,7 +21,6 @@
 
        </tbody>
       </table>
-
       <div class="row">
         <!-- user_editへのリンク -->
       </div>
@@ -46,23 +46,20 @@
 
   <!-- Users一覧 -->
   <div class="col-md-8 offset-md-1">
-    <h2>Users</h2>
-    <table class="table">
-      <thead>
+    <h2>Books</h2>
+      <% @books.each do |book| %>
+      <table class="table">
+       <tbody>
         <tr>
-          <th>image</th>
-          <th>name</th>
-          <th></th>
+          <td><%= image_tag('no_image.jpg') %></td>
+          <td><%= link_to book.title,book_path(book) %></td>
+          <td><%= book.body %></td>
+          <td><%= link_to"Edit",edit_book_path(@books) %></td>
+          <td><!--Destroyボタン--></td>
         </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><!--ユーザー画像--></td>
-          <td><!--ユーザーネーム--></td>
-          <td><!--showユーザー詳細リンク--></td>
-        </tr>
-      </tbody>
-    </table>
+       </tbody>
+      </div>
+      <% end %>
   </div>
 
 
